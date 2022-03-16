@@ -21,8 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <ErrorArray title="Cool" desc="Haat1"/>
-      <ErrorArray title="Cool" desc="Haat2"/>
+      {/* <ErrorArray title="Cool" desc="Haat1"/> */}
+      {/* <ErrorArray title="Cool" desc="Haat2"/> */}
       {/* Header is contains name and links for signout and global task */}
       <Header/>
 
