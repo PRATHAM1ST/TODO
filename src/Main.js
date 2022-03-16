@@ -7,9 +7,13 @@ import Pending from "./Pending";
 import Completed from "./Completed";
 
 export default function Main(){
+  // Getting user info
   const uid = useAuthChange()[0];
+
+  // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
 
+  // Converting the string of time and date into date 
   function convertToDate(str) {
     var date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),

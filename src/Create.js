@@ -11,8 +11,6 @@ export default function Create(){
 
     const uid = useAuthChange()[0];
 
-    // cool
-
     function handleNewTask (e){
         if(e.key === "Enter" && addTask){
             handleArrowClick();

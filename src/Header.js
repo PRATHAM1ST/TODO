@@ -3,10 +3,13 @@ import useAuthChange from "./custom-hooks/useAuthChange"
 import useGlobal from "./custom-hooks/useGlobal";
 
 export default function Header(){
+    // Get and updating Authentication 
     const [auth, setAuth]  = useAuthChange();
+
     const [global, setGlobal] = useGlobal();
 
     const handleSignOut = () =>{
+        // Getting user data
         const auth = getAuth();
         signOut(auth);
         setAuth(false);

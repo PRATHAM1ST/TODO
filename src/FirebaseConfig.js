@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
-// TODO: Replace the following with your app's Firebase project configuration
+// Firebase configuration
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -21,12 +21,11 @@ const auth  = getAuth();
 async function CreateUser(email, password, name){
     return createUserWithEmailAndPassword(auth, email, password)
         .then((user) => {
-        // Signed in 
-        console.log(user.user)
-        updateProfile(user.user, {
-            displayName: name
+            // setting up name
+            updateProfile(user.user, {
+                displayName: name
+            })
         })
-    })
 }
 
 async function Signin(email, password){

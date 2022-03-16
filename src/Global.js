@@ -8,12 +8,16 @@ import Completed from "./Completed";
 import useGlobal from "./custom-hooks/useGlobal";
 
 export default function Global(){
+  // Getting user info
   const uid = useAuthChange()[0];
+
+  // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
   const [global, setGlobal] = useGlobal();
 
   console.log(global);
 
+  // Converting the string of time and date into date 
   function convertToDate(str) {
     var date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
@@ -26,6 +30,7 @@ export default function Global(){
     return date;
   }  
 
+  // When we get uid, connection of realtime database
   useEffect(()=>{
     if(uid){
       const q = query(collection(db, "Global"), orderBy("created", "desc"));

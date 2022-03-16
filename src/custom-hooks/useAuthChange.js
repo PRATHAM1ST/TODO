@@ -6,7 +6,7 @@ export default function useAuthChange(){
 
     const auth = getAuth()
 
-    
+    // When authentication is done 
     useEffect(()=>{
         onAuthStateChanged(auth, (e) => {
             if(e) {
@@ -17,5 +17,6 @@ export default function useAuthChange(){
             } 
         });
     }, [auth])
+    
     return [user, setUser];
 }
