@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
 export default function useGlobal(){
-    const[global, setGlobal] = useState(false);
+    const [global, setGlobal] = useState(false);
+    const [g, setg] = useState(false)
 
     useEffect(()=>{
-        console.log(1)
-    },[global])
+        g && setGlobal(!global) || global && setGlobal(!global);
+    },[g])
 
-    return [global, setGlobal];
+    return [global, setg];
 }

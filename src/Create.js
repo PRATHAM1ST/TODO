@@ -12,21 +12,22 @@ export default function Create(){
     const uid = useAuthChange()[0];
 
     function handleNewTask (e){
-        if(e.key === "Enter"){
+        if(e.key === "Enter" && addTask){
             handleArrowClick();
         }
         else{
-            setAddTask(e.target.innerText.trim())
+            setAddTask(e.target.innerText.trim());
         }
     }
 
     function handleArrowClick(){
-        addDoc(collection(db, uid), {
+        addTask && addDoc(collection(db, uid), {
             task: addTask, 
             type: "pending",
             created: serverTimestamp()
         })
-        setNewTask(false)
+        setAddTask('');
+        setNewTask(false);
         taskRef.current.innerText = '';
     }
 

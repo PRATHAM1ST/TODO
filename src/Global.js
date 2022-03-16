@@ -5,10 +5,14 @@ import { useEffect, useState } from "react";
 import { db } from "./FirebaseConfig";
 import Pending from "./Pending";
 import Completed from "./Completed";
+import useGlobal from "./custom-hooks/useGlobal";
 
 export default function Global(){
   const uid = useAuthChange()[0];
   const [DocArray, setDocArray] = useState();
+  const [global, setGlobal] = useGlobal();
+
+  console.log(global);
 
   function convertToDate(str) {
     var date = new Date(str),
@@ -35,11 +39,11 @@ export default function Global(){
       <>
 
         {
-          uid && <Create/>  
+          global && uid && <Create/>  
         }
         
         {
-          uid && DocArray && DocArray.map(doc=>{
+          global && uid && DocArray && DocArray.map(doc=>{
             if(doc.type === "pending"){
               return <Pending key={doc.id} id={doc.id} task={doc.task} date={doc.created && convertToDate(doc.created.toDate())}/>
             }
