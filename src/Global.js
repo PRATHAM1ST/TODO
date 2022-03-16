@@ -13,7 +13,7 @@ export default function Global(){
 
   // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
-  const [global, setGlobal] = useGlobal();
+  const global = useGlobal()[0];
 
   console.log(global);
 
@@ -35,7 +35,7 @@ export default function Global(){
     if(uid){
       const q = query(collection(db, "Global"), orderBy("created", "desc"));
       onSnapshot(q, snapshot => {
-      setDocArray(snapshot.docs.map(doc=> ({id: doc.id, ...doc.data()})))
+      setDocArray(snapshot.docs.map(doc=>{return({id: doc.id, ...doc.data()})}))
     })
     }
   },[uid])
@@ -46,7 +46,7 @@ export default function Global(){
         {
           global && uid && <Create/>  
         }
-        
+        {console.log(DocArray)}
         {
           global && uid && DocArray && DocArray.map(doc=>{
             if(doc.type === "pending"){
@@ -55,6 +55,7 @@ export default function Global(){
             else if(doc.type === "completed"){
               return <Completed key={doc.id} id={doc.id} task={doc.task} date={doc.created && convertToDate(doc.created.toDate())}/>
             }
+            return doc
           })
         }
       </>

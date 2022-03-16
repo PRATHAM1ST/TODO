@@ -30,7 +30,7 @@ export default function Main(){
     if(uid){
       const q = query(collection(db, uid), orderBy("created", "desc"));
       onSnapshot(q, snapshot => {
-      setDocArray(snapshot.docs.map(doc=> ({id: doc.id, ...doc.data()})))
+      setDocArray(snapshot.docs.map(doc=>{ return ({id: doc.id, ...doc.data()})}))
     })
     }
   },[uid])
@@ -50,6 +50,7 @@ export default function Main(){
             else if(doc.type === "completed"){
               return <Completed key={doc.id} id={doc.id} task={doc.task} date={doc.created && convertToDate(doc.created.toDate())}/>
             }
+            return doc
           })
         }
       </>
