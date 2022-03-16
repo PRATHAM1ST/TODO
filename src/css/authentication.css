@@ -5,7 +5,7 @@
     align-items: center;
     gap: 1em;
     margin: 1em;
-    width: 50%;
+    width: var(--app-width);
     margin: auto;
 }
 

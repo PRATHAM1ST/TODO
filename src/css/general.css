@@ -11,7 +11,7 @@ body{
 
 .App{
     width: var(--app-width);
-    margin: 5em auto;
+    margin: 2.5em auto;
 }
 
 span {
