@@ -1,0 +1,34 @@
+.Auth{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 1em;
+    width: 50%;
+    margin: auto;
+}
+
+input{
+    width: 100%;
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--pending-bg-clr);
+
+}
+
+input[type="submit"]{
+    user-select: none;
+    cursor: pointer;
+    width: 20ch;
+    background-color: var(--pending-bg-clr);
+    color: white;
+}
+
+.link{
+    user-select: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    font-size: 0.75em;
+}

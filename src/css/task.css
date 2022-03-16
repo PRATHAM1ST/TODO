@@ -1,0 +1,57 @@
+.task{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: var(--border-radius);
+}
+
+.task:hover{
+    opacity: var(--task-hover-opacity);
+    z-index: 1000;
+}
+
+.task > input{
+    width: fit-content;
+    transform: scale(2);
+}
+.task > div{
+    width: 100%;
+}
+
+.pending{
+    background-color: var(--pending-bg-clr);
+    color: white;
+}
+
+.completed{
+    background-color: var(--completed-bg-clr);
+    filter: blur(0.7px);
+}
+
+.completed > div {
+    text-decoration: line-through;
+}
+
+.Date{
+    position: absolute;
+    right: 1em;
+    padding: 0.2em;
+    border-radius: var(--border-radius);
+    font-size: 0.75em;
+    color: rgb(180, 180, 180);
+}
+
+.pending > .Date{
+    background-color: var(--pending-bg-clr);
+}
+
+.completed > .Date{
+    background-color: var(--completed-bg-clr);
+}
+
+.task:hover > .Date{
+    display: none;
+}

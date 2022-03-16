@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --font: 'Poppins', sans-serif;
+    --body-bg: #fffbe6;
+    --app-width: min(90vw, 1000px);
+    --border-radius: 5px;
+    --create-clr: #fd5523;
+    --create-input-clr: ;
+    --task-hover-opacity: 0.9;
+    --pending-bg-clr: #356859;
+    --completed-bg-clr: #b9e4c9;
+}

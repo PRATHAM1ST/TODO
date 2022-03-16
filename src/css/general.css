@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    background-color: var(--body-bg);
+}
+
+*{
+    transition: 1s ease-in-out;
+    outline: none;
+    font-family: var(--font);
+}
+
+.App{
+    width: var(--app-width);
+    margin: 5em auto;
+}
+
+span {
+    user-select: none;
+    cursor: pointer;
+}

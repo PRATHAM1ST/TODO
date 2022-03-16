@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.header>h1{
+    height: fit-content;
+    margin: 0;
+}
+
+.links{
+    display: flex;
+    gap: 1em;
+}
