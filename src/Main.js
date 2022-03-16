@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { db } from "./FirebaseConfig";
 import Pending from "./Pending";
 import Completed from "./Completed";
+import ErrorArray from "./ErrorArray";
 
 export default function Main(){
   // Getting user info
@@ -12,6 +13,9 @@ export default function Main(){
 
   // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
+
+  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorDescription, setErrorDescription] = useState(false);
 
   // Converting the string of time and date into date 
   function convertToDate(str) {
@@ -30,13 +34,20 @@ export default function Main(){
     if(uid){
       const q = query(collection(db, uid), orderBy("created", "desc"));
       onSnapshot(q, snapshot => {
-      setDocArray(snapshot.docs.map(doc=>{ return ({id: doc.id, ...doc.data()})}))
-    })
+        setDocArray(
+          snapshot.docs.map(doc=>{ 
+            return (
+              {id: doc.id, ...doc.data()}
+              )
+          })
+        )
+      })
     }
   },[uid])
 
   return(
       <>
+        {errorTitle && errorDescription && <ErrorArray title={errorTitle} desc={errorDescription}/>}
 
         {
           uid && <Create/>  

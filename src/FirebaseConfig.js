@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,18 +18,4 @@ const db = getFirestore(app);
 
 const auth  = getAuth();
 
-async function CreateUser(email, password, name){
-    return createUserWithEmailAndPassword(auth, email, password)
-        .then((user) => {
-            // setting up name
-            updateProfile(user.user, {
-                displayName: name
-            })
-        })
-}
-
-async function Signin(email, password){
-    return signInWithEmailAndPassword(auth, email, password)
-}
-
-export { Signin, CreateUser, db }
+export { db, auth }

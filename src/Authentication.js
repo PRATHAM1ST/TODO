@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import useAuthChange from "./custom-hooks/useAuthChange";
-import { Signin, CreateUser } from "./FirebaseConfig";
+import { auth } from "./FirebaseConfig";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import ErrorArray from "./ErrorArray";
+
 
 export default function Authentication(){
     const [signinTrue, setSigninTrue] = useState(true);
@@ -8,22 +11,40 @@ export default function Authentication(){
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
 
+    const [errorTitle, setErrorTitle] = useState(false);
+    const [errorDescription, setErrorDescription] = useState(false);
+
     const [userSubmitted, setUserSubmitted] = useState(false);
 
     const authstatus = useAuthChange()[0];
 
 
     useEffect(()=>{
-        async function auth(){
+        async function check(){
             if(signinTrue){
-                Signin(email, password)
+                signInWithEmailAndPassword(auth, email, password)
+                .then((e)=> console.log(e))
+                .catch(error=>{
+                    setErrorTitle("Credentials Invalid");
+                    setErrorDescription(error.message);
+                })
             }
             else{
-                CreateUser(email, password, name)    
+                createUserWithEmailAndPassword(auth, email, password)
+                .then((user) => {
+                    // setting up name
+                    updateProfile(user.user, {
+                    displayName: name
+                })
+                .catch(error=>{
+                    setErrorTitle("Credentials Invalid");
+                    setErrorDescription(error.message);
+                })
+        })   
             }
             setUserSubmitted(false);
         }
-        if(userSubmitted) auth();
+        if(userSubmitted) check();
     }, [userSubmitted])
     
     const handleSubmit = (e)=>{
@@ -46,6 +67,7 @@ export default function Authentication(){
 
     return ( 
     <>
+        {errorTitle && errorDescription && <ErrorArray title={errorTitle} description={errorDescription}/>}
         {!authstatus && handleForm()}
     </>
 

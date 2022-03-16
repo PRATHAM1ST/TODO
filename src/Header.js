@@ -30,8 +30,8 @@ export default function Header(){
             <h1>{getAuth().currentUser.displayName}</h1>
             <div className="links">
                 <div className="link" onClick={handleSignOut}>Sign Out</div>
-                {!global && <div className="link" onClick={handleGlobal}>Global Tasks</div>}
-                {global && <div className="link" onClick={handleMain}>Personal Tasks</div>}
+                {/* {!global && <div className="link" onClick={handleGlobal}>Global Tasks</div>} */}
+                {/* {global && <div className="link" onClick={handleMain}>Personal Tasks</div>} */}
             </div>
         </div>
     )

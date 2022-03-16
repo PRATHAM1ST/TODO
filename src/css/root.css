@@ -10,4 +10,8 @@
     --task-hover-opacity: 0.9;
     --pending-bg-clr: #356859;
     --completed-bg-clr: #b9e4c9;
+
+    --error-animation-sec: 5s;
+    --error-font-clr: #d32f2f;
+    --error-box-bg-clr: #fdeded;
 }

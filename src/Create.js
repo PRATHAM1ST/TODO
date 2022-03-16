@@ -2,10 +2,14 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react"
 import useAuthChange from "./custom-hooks/useAuthChange";
 import { db } from "./FirebaseConfig";
+import ErrorArray from "./ErrorArray";
 
 export default function Create(){
     const [addTask, setAddTask] = useState('');
     const [newTask, setNewTask] = useState(false);
+
+    const [errorTitle, setErrorTitle] = useState(false);
+    const [errorDescription, setErrorDescription] = useState(false);
 
     const taskRef = useRef(null);
 
@@ -25,6 +29,9 @@ export default function Create(){
             task: addTask, 
             type: "pending",
             created: serverTimestamp()
+        }).catch(error=>{
+            setErrorTitle("Doc Not Added");
+            setErrorDescription(error);
         })
         setAddTask('');
         setNewTask(false);
@@ -49,6 +56,9 @@ export default function Create(){
 
     return(
         <>
+            {
+                errorTitle && errorDescription && <ErrorArray title={errorTitle} description={errorDescription}/>
+            }
             {
                 newTask && <div className="create" onClick={handleClick}>
                     Lets Add a Task
