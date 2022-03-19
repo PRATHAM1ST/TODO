@@ -61,7 +61,7 @@ export default function Create(){
             }
             {
                 !newTask && <div className="create" onClick={handleClick}>
-                    Lets Add a Task
+                    Let's Add a Task
                 </div>
             }
             {newTask && <div className="createBox">

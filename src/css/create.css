@@ -8,6 +8,10 @@
     border-style: dashed;
     border-radius: var(--boder-radius);
     margin: 2em 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 5px;
 }
 
 .newtask{
