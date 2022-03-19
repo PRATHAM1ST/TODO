@@ -9,8 +9,10 @@ import './css/error.css';
 // js
 import Main from "./Main";
 import Authentication from './Authentication';
-import Global from './Global';
+import Group from './Group';
+import GroupAuth from './GroupAuth';
 
+// router
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Main />}/>
           <Route exact path="Auth" element={<Authentication />} />
-          <Route exact path="Global" element={<Global />} />
+          <Route exact path="Group" element={<Group />} />
+          <Route exact path="GroupAuth" element={<GroupAuth />} />
           {/* <Route path="about" element={<About />} /> */}
         </Routes>
       </div>

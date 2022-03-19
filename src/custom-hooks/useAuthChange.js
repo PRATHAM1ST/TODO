@@ -13,10 +13,15 @@ export default function useAuthChange(){
             if(e) {
                 setUser(e.uid);
                 localStorage.setItem('uid', JSON.stringify(e.uid));
+                localStorage.setItem('NameOfUser', JSON.stringify(e.displayName));
             }
             else {
-                setUser(false)
-                localStorage.setItem('uid', JSON.stringify(''));
+                setUser(false); 
+                localStorage.removeItem("uid");
+                localStorage.removeItem("groupName");
+                localStorage.removeItem("groupPassword");
+                localStorage.removeItem("groupId");
+                localStorage.removeItem("NameOfUser");
             } 
         });
     }, [auth])

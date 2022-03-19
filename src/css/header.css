@@ -4,9 +4,15 @@
     height: fit-content;
 }
 
-.header>h1{
+.header>h1, .header > h3{
     height: fit-content;
     margin: 0;
+}
+
+.header > h3{
+    cursor: pointer;
+    color: rgb(87, 87, 87);
+    font-size: 12px;
 }
 
 .links{

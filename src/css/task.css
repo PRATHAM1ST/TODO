@@ -35,13 +35,14 @@
     text-decoration: line-through;
 }
 
-.Date{
+.Date, .creator{
     position: absolute;
     right: 1em;
     padding: 0.2em;
     border-radius: var(--border-radius);
     font-size: 0.75em;
     color: rgb(180, 180, 180);
+    width: fit-content;
 }
 
 .pending > .Date{
@@ -54,4 +55,12 @@
 
 .task:hover > .Date{
     display: none;
+}
+
+.creator{
+    display: none;
+}
+
+.task:hover > .creator{
+    display: block;
 }

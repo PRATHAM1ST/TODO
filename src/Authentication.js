@@ -24,7 +24,7 @@ export default function Authentication(){
             if(signinTrue){
                 signInWithEmailAndPassword(auth, email, password)
                 .then(
-                    
+
                 )
                 .catch(error=>{
                     setErrorTitle("Credentials Invalid");
@@ -37,12 +37,12 @@ export default function Authentication(){
                     // setting up name
                     updateProfile(user.user, {
                     displayName: name
-                    }
-                )
+                    })
+                localStorage.setItem("NameOfUser", JSON.stringify(name));
+                })
                 .catch(error=>{
                     setErrorTitle("Credentials Invalid");
                     setErrorDescription(error.message);
-                })
         })   
             }
             setUserSubmitted(false);

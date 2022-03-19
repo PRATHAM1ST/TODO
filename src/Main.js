@@ -55,7 +55,7 @@ export default function Main(){
 
   return(
       <>
-        <Header/>
+        <Header GroupValue={false}/>
 
         {errorTitle && errorDescription && <ErrorArray title={errorTitle} desc={errorDescription}/>}
 
