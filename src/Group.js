@@ -23,7 +23,32 @@ export default function Group(){
     var date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
-    let today = new Date().toLocaleDateString("in", {year:"numeric", day:"2-digit", month:"2-digit"});
+
+    let fiveDays = new Date(new Date().setDate(new Date().getDate() - 5)).toDateString() === str.toDateString();
+    if(fiveDays){
+      return "5 Days";
+    }
+    let fourDays = new Date(new Date().setDate(new Date().getDate() - 4)).toDateString() === str.toDateString();
+    if(fourDays){
+      return "4 Days";
+    }
+    let threeDays = new Date(new Date().setDate(new Date().getDate() - 3)).toDateString() === str.toDateString();
+    if(threeDays){
+      return "3 Days";
+    }
+    let twoDays = new Date(new Date().setDate(new Date().getDate() - 2)).toDateString() === str.toDateString();
+    if(twoDays){
+      return "2 Days";
+    }
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1)).toDateString() === str.toDateString();
+    if(yesterday){
+      return "Yesterday";
+    }
+    let today = new Date().toDateString() === str.toDateString();
+    if(today){
+      return "Today";
+    }
+
     date = [day, mnth, date.getFullYear()].join("/")
     if(today === date){
       return "Today";
