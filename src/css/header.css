@@ -2,11 +2,14 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
+    text-transform: uppercase;
 }
 
-.header>h1, .header > h3{
+.header > h1, .header > h3{
+    text-transform: none;
     height: fit-content;
     margin: 0;
+    color: var(--secondary-clr);
 }
 
 .header > h3{
@@ -15,7 +18,18 @@
     font-size: 12px;
 }
 
-.links{
+.header > h1 > span{
+    transition: none;
+    visibility: hidden;
+}
+
+.header > h1:hover > span{
+    visibility: visible;
+}
+
+.header > .links{
     display: flex;
+    flex-wrap: wrap;
     gap: 1em;
+    color: var(--ternary-clr);
 }

@@ -1,34 +1,55 @@
 .Auth{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 1em;
+    width: var(--form-width);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1em;
-    margin: 1em;
-    width: var(--app-width);
-    margin: auto;
+
+    font-size: 1em;
+    text-transform: uppercase;
 }
 
 input{
-    width: 100%;
+    width: calc(100% - 1em);
     padding: 0.5em;
     border-radius: var(--border-radius);
-    border: 1px solid var(--pending-bg-clr);
-
+    border: none;
+    box-shadow: 0 1px 5px var(--secondary-clr);
 }
 
 input[type="submit"]{
+    text-transform: uppercase;
     user-select: none;
     cursor: pointer;
     width: 20ch;
-    background-color: var(--pending-bg-clr);
-    color: white;
+    color: var(--secondary-clr);
+    border: none;
+    background-color: var(--ternary-clr);
+    border-color: none;
+    font-weight: 600;
+    margin-top: 1em;
 }
 
 .link{
     user-select: none;
     cursor: pointer;
-    color: blue;
+    color: var(--secondary-clr);
     text-decoration: underline;
     font-size: 0.75em;
+    font-weight: 600;
+}
+
+.AuthLinks{
+    display: flex;
+    gap: 4em;
+}
+
+.Auth > h1{
+    color: var(--secondary-clr);
 }

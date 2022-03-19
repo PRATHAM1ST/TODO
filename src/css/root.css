@@ -2,14 +2,17 @@
 
 :root{
     --font: 'Poppins', sans-serif;
-    --body-bg: #fffbe6;
+    --body-bg: #EBEBEB;
+
+    --primary-clr: #EBEBEB;
+    --secondary-clr: #0B2228;
+    --ternary-clr: #DED087;
+
+
     --app-width: min(90vw, 1000px);
+    --form-width: min(90vw, 500px);
     --border-radius: 5px;
-    --create-clr: #fd5523;
-    --create-input-clr: ;
-    --task-hover-opacity: 0.9;
-    --pending-bg-clr: #356859;
-    --completed-bg-clr: #b9e4c9;
+    --task-hover-opacity: 0.87;
 
     --error-animation-sec: 5s;
     --error-font-clr: #d32f2f;

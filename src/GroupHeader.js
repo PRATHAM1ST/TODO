@@ -33,7 +33,7 @@ export default function Header(){
         localStorage.removeItem("groupName");
         localStorage.removeItem("groupPassword");
         localStorage.removeItem("groupId");
-        navigate('/GroupAuth');
+        navigate('/');
     }
 
     if(!localStorage.getItem("uid")){
@@ -49,12 +49,16 @@ export default function Header(){
             <br/>
             <div className="links">
                 <div className="link" onClick={handleSignOut}>Sign Out</div>
-                <div className="link">
-                    <Link to="/">Personal Tasks</Link>
-                </div>
-                <div className="link">
-                    <Link to="/GroupAuth">Join Group / Create Group</Link>
-                </div>
+                <Link to="/" >
+                    <div className="link">
+                        Personal Tasks
+                    </div>
+                </Link>
+                <Link to="/GroupAuth">
+                    <div className="link">
+                        Join Group / Create Group
+                    </div>
+                </Link>
             </div>
         </div>
     )

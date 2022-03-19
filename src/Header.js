@@ -29,9 +29,11 @@ export default function Header(){
             <h1>{getAuth().currentUser.displayName}</h1>
             <div className="links">
                 <div className="link" onClick={handleSignOut}>Sign Out</div>
-                <div className="link">
-                   <Link to="Group">Group Task</Link>
-                </div>
+                <Link to="Group">
+                    <div className="link">
+                       Group Task
+                    </div>
+                </Link>
             </div>
         </div>
     )

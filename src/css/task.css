@@ -6,6 +6,7 @@
     padding: 1em;
     margin: 0.5em 0;
     border-radius: var(--border-radius);
+    font-weight: 500;
 }
 
 .task:hover{
@@ -22,13 +23,14 @@
 }
 
 .pending{
-    background-color: var(--pending-bg-clr);
-    color: white;
+    background-color: var(--secondary-clr);
+    color: var(--primary-clr);
 }
 
 .completed{
-    background-color: var(--completed-bg-clr);
-    filter: blur(0.7px);
+    color: var(--secondary-clr);
+    background-color: var(--ternary-clr);
+    filter: blur(0.6px);
 }
 
 .completed > div {
@@ -41,16 +43,19 @@
     padding: 0.2em;
     border-radius: var(--border-radius);
     font-size: 0.75em;
-    color: rgb(180, 180, 180);
+    font-weight: 100;
+    color: var(--primary-clr);
     width: fit-content;
 }
 
 .pending > .Date{
-    background-color: var(--pending-bg-clr);
+    background-color: var(--secondary-clr);
 }
 
 .completed > .Date{
-    background-color: var(--completed-bg-clr);
+    font-weight: 300;
+    color: var(--secondary-clr);
+    background-color: var(--ternary-clr);
 }
 
 .task:hover > .Date{

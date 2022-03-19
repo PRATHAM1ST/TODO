@@ -3,8 +3,8 @@
     cursor: pointer;
     text-align: center;
     padding: 1em;
-    background-color: crimson;
-    color: white;
+    background-color: var(--secondary-clr);
+    color: var(--ternary-clr);
     border-style: dashed;
     border-radius: var(--boder-radius);
     margin: 2em 0;

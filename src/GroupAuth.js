@@ -73,9 +73,13 @@ export default function GroupAuth(){
                 {createGroup && <input type="text" value={groupName} onChange={e=>setGroupName(e.target.value)} placeholder="Group Name" required/>}
                 <input type="password" value={groupPassword} onChange={e=>setGroupPassword(e.target.value)} placeholder="Password" required/>
                 <input type="submit"/>
-                <div className="link" onClick={()=>setCreateGroup(!createGroup)}>{(!createGroup && "Create Group") || (createGroup && "Join Group")}</div>
-                <div className="link" onClick={()=>setCreateGroup(!createGroup)}>
-                    <Link to={-1}>Go back</Link>    
+                <div className="AuthLinks">
+                    <div className="link" onClick={()=>setCreateGroup(!createGroup)}>{(!createGroup && "Create Group") || (createGroup && "Join Group")}</div>
+                    <Link to="/">
+                        <div className="link" onClick={()=>setCreateGroup(!createGroup)}>
+                            Personal Task  
+                        </div>
+                    </Link> 
                 </div>
             </form>
         </>

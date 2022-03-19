@@ -60,11 +60,11 @@ export default function Create(){
                 errorTitle && errorDescription && <ErrorArray title={errorTitle} description={errorDescription}/>
             }
             {
-                newTask && <div className="create" onClick={handleClick}>
+                !newTask && <div className="create" onClick={handleClick}>
                     Lets Add a Task
                 </div>
             }
-            {!newTask && <div className="createBox">
+            {newTask && <div className="createBox">
                             <div className="newtask" contentEditable="true" onKeyUp={(e)=>handleNewTask(e)} onBlurCapture={handleFocus} ref= {taskRef}>
                             </div>
                             <span className="material-icons enter-arrow" onClick={handleArrowClick}>arrow_forward_ios</span>
