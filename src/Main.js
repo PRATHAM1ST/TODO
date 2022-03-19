@@ -6,6 +6,8 @@ import { db } from "./FirebaseConfig";
 import Pending from "./Pending";
 import Completed from "./Completed";
 import ErrorArray from "./ErrorArray";
+import { Navigate } from "react-router-dom";
+import Header from "./Header";
 
 export default function Main(){
   // Getting user info
@@ -45,8 +47,16 @@ export default function Main(){
     }
   },[uid])
 
+  console.log(uid)
+
+  if(!uid && !JSON.parse(localStorage.getItem('uid'))){
+    return <Navigate to="Auth"/>
+  }
+
   return(
       <>
+        <Header/>
+
         {errorTitle && errorDescription && <ErrorArray title={errorTitle} desc={errorDescription}/>}
 
         {

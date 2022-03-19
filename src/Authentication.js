@@ -3,6 +3,7 @@ import useAuthChange from "./custom-hooks/useAuthChange";
 import { auth } from "./FirebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import ErrorArray from "./ErrorArray";
+import  {Navigate} from "react-router-dom";
 
 
 export default function Authentication(){
@@ -18,12 +19,13 @@ export default function Authentication(){
 
     const authstatus = useAuthChange()[0];
 
-
     useEffect(()=>{
         async function check(){
             if(signinTrue){
                 signInWithEmailAndPassword(auth, email, password)
-                .then((e)=> console.log(e))
+                .then(
+                    
+                )
                 .catch(error=>{
                     setErrorTitle("Credentials Invalid");
                     setErrorDescription(error.message);
@@ -35,7 +37,8 @@ export default function Authentication(){
                     // setting up name
                     updateProfile(user.user, {
                     displayName: name
-                })
+                    }
+                )
                 .catch(error=>{
                     setErrorTitle("Credentials Invalid");
                     setErrorDescription(error.message);
@@ -63,6 +66,10 @@ export default function Authentication(){
                 <div className="link" onClick={()=>setSigninTrue(!signinTrue)}>{(signinTrue && "Sign Up") || (!signinTrue && "Sign In")}</div>
             </form>
         )
+    }
+
+    if(authstatus && JSON.parse(localStorage.getItem('uid'))){
+        return <Navigate to="/"/>;
     }
 
     return ( 

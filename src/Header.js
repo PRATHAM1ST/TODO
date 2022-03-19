@@ -1,12 +1,12 @@
 import { getAuth, signOut } from "firebase/auth";
+import { useState } from "react";
 import useAuthChange from "./custom-hooks/useAuthChange"
-import useGlobal from "./custom-hooks/useGlobal";
 
 export default function Header(){
     // Get and updating Authentication 
     const [auth, setAuth]  = useAuthChange();
 
-    const [global, setGlobal] = useGlobal();
+    const [global, setGlobal] = useState(false);
 
     const handleSignOut = () =>{
         // Getting user data

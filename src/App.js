@@ -9,32 +9,21 @@ import './css/error.css';
 // js
 import Main from "./Main";
 import Authentication from './Authentication';
-import Header from './Header';
 import Global from './Global';
-import Error from './Error';
-import useGlobal from './custom-hooks/useGlobal';
-import ErrorArray from './ErrorArray';
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  // This checks for 
-  const global = useGlobal()[0];
-
+  
   return (
-    <div className="App">
-      {/* <ErrorArray title="Cool" desc="Haat1"/> */}
-      {/* <ErrorArray title="Cool" desc="Haat2"/> */}
-      {/* Header is contains name and links for signout and global task */}
-      <Header/>
-
-      {/* SignIn and SignUp */}
-      <Authentication/>
-      
-      {/* Main is for user's personal task */}
-      {!global && <Main/>}
-
-      {/* Global is where everyone adds the task */}
-      {global && <Global/>}
-    </div>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Main />}/>
+          <Route exact path="Auth" element={<Authentication />} />
+          <Route exact path="Global" element={<Global />} />
+          {/* <Route path="about" element={<About />} /> */}
+        </Routes>
+      </div>
   );
 }
 

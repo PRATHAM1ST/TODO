@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { db } from "./FirebaseConfig";
 import Pending from "./Pending";
 import Completed from "./Completed";
-import useGlobal from "./custom-hooks/useGlobal";
 
 export default function Global(){
   // Getting user info
@@ -13,9 +12,6 @@ export default function Global(){
 
   // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
-  const global = useGlobal()[0];
-
-  console.log(global);
 
   // Converting the string of time and date into date 
   function convertToDate(str) {
@@ -44,11 +40,11 @@ export default function Global(){
       <>
 
         {
-          global && uid && <Create/>  
+          (global && uid) && <Create/>  
         }
         {console.log(DocArray)}
         {
-          global && uid && DocArray && DocArray.map(doc=>{
+          (global && uid) && (DocArray && DocArray.map(doc=>{
             if(doc.type === "pending"){
               return <Pending key={doc.id} id={doc.id} task={doc.task} date={doc.created && convertToDate(doc.created.toDate())}/>
             }
@@ -56,7 +52,7 @@ export default function Global(){
               return <Completed key={doc.id} id={doc.id} task={doc.task} date={doc.created && convertToDate(doc.created.toDate())}/>
             }
             return doc
-          })
+          }))
         }
       </>
   )
