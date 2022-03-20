@@ -1,19 +1,16 @@
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react"
-import useAuthChange from "./custom-hooks/useAuthChange";
-import { db } from "./FirebaseConfig";
-import ErrorArray from "./ErrorArray";
+import { db } from "../FirebaseConfig";
 
-export default function Create(){
+export default function CreateGroup(){
+
     const [addTask, setAddTask] = useState('');
     const [newTask, setNewTask] = useState(false);
 
-    const [errorTitle, setErrorTitle] = useState(false);
-    const [errorDescription, setErrorDescription] = useState(false);
 
     const taskRef = useRef(null);
 
-    const uid = useAuthChange()[0];
+    const uid = JSON.parse(localStorage.getItem("uid"));
 
     function handleNewTask (e){
         if(e.key === "Enter" && addTask){
@@ -25,13 +22,15 @@ export default function Create(){
     }
 
     function handleArrowClick(){
-        addTask && addDoc(collection(db, uid), {
+        const gid = JSON.parse(localStorage.getItem("groupId"))
+        addTask && addDoc(collection(db, "Groups", gid, gid), {
             task: addTask, 
             type: "pending",
-            created: serverTimestamp()
+            created: serverTimestamp(),
+            creatorId: uid,
+            creatorName: JSON.parse(localStorage.getItem('NameOfUser'))
         }).catch(error=>{
-            setErrorTitle("Doc Not Added");
-            setErrorDescription(error);
+
         })
         setAddTask('');
         setNewTask(false);
@@ -57,11 +56,8 @@ export default function Create(){
     return(
         <>
             {
-                errorTitle && errorDescription && <ErrorArray title={errorTitle} description={errorDescription}/>
-            }
-            {
                 !newTask && <div className="create" onClick={handleClick}>
-                    Let's Add a Task
+                    Lets Add a Task
                 </div>
             }
             {newTask && <div className="createBox">

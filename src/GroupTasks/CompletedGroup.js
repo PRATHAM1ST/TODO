@@ -1,9 +1,9 @@
-import { doc, updateDoc, deleteDoc, getDoc, collection } from "firebase/firestore"
-import useAuthChange from "./custom-hooks/useAuthChange"
-import { db } from "./FirebaseConfig"
+import { doc, updateDoc, deleteDoc} from "firebase/firestore"
+
+import { db } from "../FirebaseConfig"
 
 export default function Completed({id, task, date, creatorId, creatorName}){
-    const uid = useAuthChange()[0];
+    const uid = JSON.parse(localStorage.getItem("uid"));
 
     const groupId = JSON.parse(localStorage.getItem("groupId"))
 

@@ -1,12 +1,14 @@
-import { addDoc, collection, getDoc, doc } from "firebase/firestore";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import useAuthChange from "./custom-hooks/useAuthChange";
-import { db } from "./FirebaseConfig";
-import {sha512} from "js-sha512";
+import { Link, useNavigate } from "react-router-dom";
+
+import { addDoc, collection, getDoc, doc } from "firebase/firestore";
+
+import { db } from "../FirebaseConfig";
+
+import { sha512 } from "js-sha512";
 
 export default function GroupAuth(){
-    const uid = useAuthChange()[0];
+    const uid = JSON.parse(localStorage.getItem("uid"));
 
 
     const [groupId, setGroupId] = useState('');
@@ -14,7 +16,9 @@ export default function GroupAuth(){
     const [groupName, setGroupName] = useState('');
     const [createGroup, setCreateGroup] = useState(false);
 
-    const navigate = useNavigate();
+    const [error, setError] = useState(false);
+
+    const navigate = useNavigate(null);
 
 
     const handleSubmit = (e)=>{
@@ -31,8 +35,10 @@ export default function GroupAuth(){
                 localStorage.setItem("groupPassword", JSON.stringify(groupPassword));
                 localStorage.setItem("groupName", JSON.stringify(groupName));
                 navigate('/Group');
+                setError(false);
             }).catch((e)=>{
                 console.error(e)
+                setError(true)
             })
             setGroupId('');
             setGroupName('');
@@ -47,11 +53,14 @@ export default function GroupAuth(){
                     localStorage.setItem("groupPassword", JSON.stringify(groupPassword));
                     localStorage.setItem("groupName", JSON.stringify(e.data().groupName));
                     navigate('/Group');
+                    setError(false);
                 }
                 else if(!e.exists()){
+                    setError(true);
                     console.error("group dont exists")
                 }
                 else{
+                    setError(true);
                     console.error("password is invalid")
                 }
             })
@@ -62,19 +71,29 @@ export default function GroupAuth(){
     }
 
     if(!uid){
-        navigate('Auth');
+        console.log(uid)
+        navigate("/Auth");
     }
+
 
     return(
         <>
             <form className="Auth" onSubmit={e => handleSubmit(e)}>
+
                 <h1>{(createGroup && "Create Group") || (!createGroup && "Join Group")}</h1>
+                
+                {error && <div className="error">Invalid Credentials</div>}
+                
                 {!createGroup && <input type="text" value={groupId} onChange={e=>setGroupId(e.target.value)} placeholder="Group Id" required/>}
+                
                 {createGroup && <input type="text" value={groupName} onChange={e=>setGroupName(e.target.value)} placeholder="Group Name" required/>}
+                
                 <input type="password" value={groupPassword} onChange={e=>setGroupPassword(e.target.value)} placeholder="Password" required/>
+                
                 <input type="submit"/>
+                
                 <div className="AuthLinks">
-                    <div className="link" onClick={()=>setCreateGroup(!createGroup)}>{(!createGroup && "Create Group") || (createGroup && "Join Group")}</div>
+                    <div className="link" onClick={()=>{setCreateGroup(!createGroup); setError(false)}}>{(!createGroup && "Create Group") || (createGroup && "Join Group")}</div>
                     <Link to="/">
                         <div className="link" onClick={()=>setCreateGroup(!createGroup)}>
                             Personal Task  

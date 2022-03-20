@@ -1,16 +1,13 @@
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react"
-import useAuthChange from "./custom-hooks/useAuthChange";
-import { db } from "./FirebaseConfig";
-import ErrorArray from "./ErrorArray";
 
-export default function CreateGroup(){
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
+import useAuthChange from "../custom-hooks/useAuthChange";
+import { db } from "../FirebaseConfig";
+
+export default function Create(){
     const [addTask, setAddTask] = useState('');
     const [newTask, setNewTask] = useState(false);
-
-    const [errorTitle, setErrorTitle] = useState(false);
-    const [errorDescription, setErrorDescription] = useState(false);
 
     const taskRef = useRef(null);
 
@@ -26,16 +23,11 @@ export default function CreateGroup(){
     }
 
     function handleArrowClick(){
-        const gid = JSON.parse(localStorage.getItem("groupId"))
-        addTask && addDoc(collection(db, "Groups", gid, gid), {
+        addTask && addDoc(collection(db, uid), {
             task: addTask, 
             type: "pending",
-            created: serverTimestamp(),
-            creatorId: uid,
-            creatorName: JSON.parse(localStorage.getItem('NameOfUser'))
+            created: serverTimestamp()
         }).catch(error=>{
-            setErrorTitle("Doc Not Added");
-            setErrorDescription(error);
         })
         setAddTask('');
         setNewTask(false);
@@ -53,7 +45,6 @@ export default function CreateGroup(){
     }
 
     
-
     useEffect(()=>{
         newTask && taskRef.current.focus();
     }, [taskRef, newTask])
@@ -61,11 +52,8 @@ export default function CreateGroup(){
     return(
         <>
             {
-                errorTitle && errorDescription && <ErrorArray title={errorTitle} description={errorDescription}/>
-            }
-            {
                 !newTask && <div className="create" onClick={handleClick}>
-                    Lets Add a Task
+                    Let's Add a Task
                 </div>
             }
             {newTask && <div className="createBox">

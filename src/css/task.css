@@ -1,4 +1,5 @@
 .task{
+    user-select: none;
     position: relative;
     display: flex;
     align-items: center;
@@ -68,4 +69,39 @@
 
 .task:hover > .creator{
     display: block;
+}
+
+.Dummy-tasks{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.Dummy-task{
+    position: relative;
+    border-radius: var(--border-radius);
+    background-color: lightgray;
+    width: 100%;
+    height: 3em;
+}
+
+.Dummy-task::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    background: white;
+    opacity: 0.2;
+    border-radius: inherit;
+    animation: dummy 1s ease-in-out infinite;
+}
+
+@keyframes dummy {
+    0%{
+        width: 100%;
+        left: 0;
+    }
+    100%{
+        width: 0;
+        left: 100%;
+    }
 }

@@ -7,10 +7,10 @@ import './css/task.css';
 import './css/header.css';
 import './css/error.css';
 // js
-import Main from "./Main";
-import Authentication from './Authentication';
-import Group from './Group';
-import GroupAuth from './GroupAuth';
+import {Main} from "./PersonalTasks/Main";
+import Authentication from './PersonalTasks/Authentication';
+import Group from './GroupTasks/Group';
+import GroupAuth from './GroupTasks/GroupAuth';
 
 // router
 import { Routes, Route } from "react-router-dom";
@@ -24,7 +24,6 @@ function App() {
           <Route exact path="Auth" element={<Authentication />} />
           <Route exact path="Group" element={<Group />} />
           <Route exact path="GroupAuth" element={<GroupAuth />} />
-          {/* <Route path="about" element={<About />} /> */}
         </Routes>
       </div>
   );

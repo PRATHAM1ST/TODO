@@ -1,13 +1,12 @@
+import { Link, useNavigate } from "react-router-dom";
+
 import { getAuth, signOut } from "firebase/auth";
 import { deleteDoc, doc } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
-import useAuthChange from "./custom-hooks/useAuthChange"
-import { db } from "./FirebaseConfig";
+
+import { db } from "../FirebaseConfig";
+import RemoveLocalStorage from "../functions/RemoveLocalStorage";
 
 export default function Header(){
-    // Get and updating Authentication 
-    const [auth, setAuth]  = useAuthChange();
-
     const navigate = useNavigate();
 
     const gid = JSON.parse(localStorage.getItem("groupId"));
@@ -15,17 +14,13 @@ export default function Header(){
     const handleSignOut = () =>{ 
         // Getting user data
         const auth = getAuth();
-        localStorage.removeItem("uid");
-        localStorage.removeItem("groupName");
-        localStorage.removeItem("groupPassword");
-        localStorage.removeItem("groupId");
-        localStorage.removeItem("NameOfUser");
         signOut(auth);
-        setAuth(false);
+        RemoveLocalStorage();
+        navigate("/Auth");
     }
 
     const handleCopy = () =>{
-        navigator.clipboard.writeText(JSON.parse(localStorage.getItem("groupId")));
+        navigator.clipboard.writeText(gid);
     }
 
     const handleGroupDelete = ()=>{
@@ -41,22 +36,27 @@ export default function Header(){
     }
 
     return(
-        auth && 
         <div className="header">
             Welcome to
             <h1>{JSON.parse(localStorage.getItem("groupName"))} <span className="material-icons" onClick={handleGroupDelete}>delete</span></h1>
+
             <h3>Group Id: <u onClick={handleCopy}>{gid}</u></h3>
+            
             <br/>
             <div className="links">
-                <div className="link" onClick={handleSignOut}>Sign Out</div>
+                <div className="link" onClick={handleSignOut}>
+                    <span className="material-icons">logout</span>
+                </div>
+
                 <Link to="/" >
                     <div className="link">
-                        Personal Tasks
+                        <span className="material-icons">person</span>
                     </div>
                 </Link>
                 <Link to="/GroupAuth">
                     <div className="link">
-                        Join Group / Create Group
+                        <span className="material-icons">login</span>
+                        <span className="material-icons">groups</span>
                     </div>
                 </Link>
             </div>

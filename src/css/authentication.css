@@ -53,3 +53,7 @@ input[type="submit"]{
 .Auth > h1{
     color: var(--secondary-clr);
 }
+
+.error{
+    color: red;
+}
