@@ -16,7 +16,7 @@ export default function Pending({id, task, date}){
         if(!update){
             return handleDelete()
         }
-        if(task != update){
+        if(task !== update){
             updateDoc(doc(db, uid, taskid), { task: update, type: "pending", created: serverTimestamp()});
         }
     }

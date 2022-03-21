@@ -48,7 +48,7 @@ export default function GroupAuth(){
 
             getDoc(doc(db, "Groups", groupId)).then((e)=>{
                 console.log(e);
-                if(e.exists() && e.data().password == sha512(groupPassword)){
+                if(e.exists() && e.data().password === sha512(groupPassword)){
                     localStorage.setItem("groupId", JSON.stringify(e.id));
                     localStorage.setItem("groupPassword", JSON.stringify(groupPassword));
                     localStorage.setItem("groupName", JSON.stringify(e.data().groupName));

@@ -24,7 +24,6 @@ export default function Group(){
 
   // When we get uid, connection of realtime database
   useEffect(()=>{
-    console.log(uid, gid)
     if(uid && gid){
       const q = query(collection(db, "Groups", gid, gid), orderBy("created", "desc"));
       onSnapshot(q, snapshot => {
@@ -35,13 +34,15 @@ export default function Group(){
         }))
     })
     }
-  },[uid])
+  },[uid, gid])
 
   if(!uid){
     navigate("/");
   }
 
-  
+  if(!gid){
+    navigate("/GoupAuth");
+  }
 
   return(
       <>

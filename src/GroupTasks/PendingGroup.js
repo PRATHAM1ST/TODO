@@ -18,7 +18,7 @@ export default function PendingGroup({id, task, date, creatorId, creatorName}){
         if(!update){
             return handleDelete()
         }
-        if(task != update){
+        if(task !== update){
             updateDoc(doc(db, uid, taskid), { task: update, type: "pending", created: serverTimestamp()});
         }
     }

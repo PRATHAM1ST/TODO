@@ -1,11 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { onSnapshot, collection, query, orderBy } from 'firebase/firestore';
 import { db } from "../FirebaseConfig";
 
 import CalculateDateTime from "../functions/CalculateDateTime";
-import useAuthChange from "../custom-hooks/useAuthChange";
 
 import Header from "./Header";
 import Create from "./Create";

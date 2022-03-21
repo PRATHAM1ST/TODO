@@ -25,7 +25,7 @@ export default function useAuthChange(){
                 navigate("/Auth");
             } 
         });
-    }, [auth])
+    }, [auth, navigate])
     
     return [user, setUser];
 }
