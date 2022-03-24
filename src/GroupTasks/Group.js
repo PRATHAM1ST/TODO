@@ -41,7 +41,7 @@ export default function Group(){
   }
 
   if(!gid){
-    navigate("/GoupAuth");
+    navigate("/GroupAuth");
   }
 
   return(
