@@ -18,7 +18,7 @@ export default function Group(){
   // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(null);
 
   const gid = JSON.parse(localStorage.getItem('groupId'));
 
