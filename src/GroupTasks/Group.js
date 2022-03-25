@@ -36,13 +36,14 @@ export default function Group(){
     }
   },[uid, gid])
   
-  console.log(gid);
-  
   if(!uid){
     navigate("/");
   }
+  
+  console.log(!gid);
 
-  if(gid === null){
+  if(!gid){
+    console.log(gid);
     navigate("/GroupAuth");
   }
 
