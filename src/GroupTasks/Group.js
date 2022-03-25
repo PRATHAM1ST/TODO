@@ -42,7 +42,7 @@ export default function Group(){
     navigate("/");
   }
 
-  if(!gid){
+  if(gid === null){
     navigate("/GroupAuth");
   }
 
