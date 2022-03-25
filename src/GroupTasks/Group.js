@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import { onSnapshot, collection, query, orderBy } from 'firebase/firestore';
 
@@ -43,6 +43,7 @@ export default function Group(){
   console.log(!gid);
 
   if(!gid){
+    return <Navigate to="/GroupAuth" />
     console.log(gid);
     navigate("/GroupAuth");
   }
