@@ -20,7 +20,7 @@ export default function Group(){
 
   const navigate = useNavigate();
 
-  const gid = JSON.parse(localStorage.getItem('groupId'))
+  const gid = JSON.parse(localStorage.getItem('groupId'));
 
   // When we get uid, connection of realtime database
   useEffect(()=>{
@@ -35,7 +35,9 @@ export default function Group(){
     })
     }
   },[uid, gid])
-
+  
+  console.log(gid);
+  
   if(!uid){
     navigate("/");
   }
