@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { onSnapshot, collection, query, orderBy } from 'firebase/firestore';
 
@@ -18,8 +18,6 @@ export default function Group(){
   // Getting the array of tasks of user
   const [DocArray, setDocArray] = useState();
 
-  const navigate = useNavigate(null);
-
   const gid = JSON.parse(localStorage.getItem('groupId'));
 
   // When we get uid, connection of realtime database
@@ -37,15 +35,11 @@ export default function Group(){
   },[uid, gid])
   
   if(!uid){
-    navigate("/");
+    return <Navigate to="/" />
   }
-  
-  console.log(!gid);
 
   if(!gid){
     return <Navigate to="/GroupAuth" />
-    console.log(gid);
-    navigate("/GroupAuth");
   }
 
   return(
